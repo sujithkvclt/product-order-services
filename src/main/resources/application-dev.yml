@@ -1,0 +1,30 @@
+# DEV Profile - PostgreSQL + Redis Cache
+# Requires Docker: docker compose up postgres redis -d
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/productorderdb
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: postgres
+
+  h2:
+    console:
+      enabled: false
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  flyway:
+    locations: classpath:db/migration/postgres
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      timeout: 60000
+
+  cache:
+    type: redis
