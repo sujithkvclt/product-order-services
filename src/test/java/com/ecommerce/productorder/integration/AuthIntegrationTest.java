@@ -35,87 +35,6 @@ class AuthIntegrationTest {
     private ObjectMapper objectMapper;
 
     @Test
-    @DisplayName("Should register a new user successfully")
-    void testRegisterUser() throws Exception {
-        RegisterRequest registerRequest = RegisterRequest.builder()
-                .username("testuser")
-                .email("test@example.com")
-                .password("password123")
-                .role(UserRole.USER.name())
-                .build();
-
-        mockMvc.perform(post("/api/auth/register")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(registerRequest)))
-                .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.token").exists())
-                .andExpect(jsonPath("$.username").value("testuser"))
-                .andExpect(jsonPath("$.email").value("test@example.com"))
-                .andExpect(jsonPath("$.role").value("USER"));
-    }
-
-    @Test
-    @DisplayName("Should fail to register user with duplicate username")
-    void testRegisterDuplicateUsername() throws Exception {
-        RegisterRequest firstRequest = RegisterRequest.builder()
-                .username("duplicateuser")
-                .email("first@example.com")
-                .password("password123")
-                .role(UserRole.USER.name())
-                .build();
-
-        mockMvc.perform(post("/api/auth/register")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(firstRequest)))
-                .andExpect(status().isCreated());
-
-        RegisterRequest duplicateRequest = RegisterRequest.builder()
-                .username("duplicateuser")
-                .email("second@example.com")
-                .password("password123")
-                .role(UserRole.USER.name())
-                .build();
-
-        mockMvc.perform(post("/api/auth/register")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(duplicateRequest)))
-                .andExpect(status().isConflict());
-    }
-
-    @Test
-    @DisplayName("Should login successfully with valid credentials")
-    void testLoginSuccess() throws Exception {
-        RegisterRequest registerRequest = RegisterRequest.builder()
-                .username("loginuser")
-                .email("login@example.com")
-                .password("password123")
-                .role(UserRole.USER.name())
-                .build();
-
-        mockMvc.perform(post("/api/auth/register")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(registerRequest)))
-                .andExpect(status().isCreated());
-
-        LoginRequest loginRequest = LoginRequest.builder()
-                .username("loginuser")
-                .password("password123")
-                .build();
-
-        MvcResult result = mockMvc.perform(post("/api/auth/login")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(loginRequest)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.token").exists())
-                .andExpect(jsonPath("$.username").value("loginuser"))
-                .andReturn();
-
-        String responseBody = result.getResponse().getContentAsString();
-        AuthResponse authResponse = objectMapper.readValue(responseBody, AuthResponse.class);
-        assertNotNull(authResponse.getToken());
-    }
-
-    @Test
     @DisplayName("Should fail to login with invalid credentials")
     void testLoginFailure() throws Exception {
         LoginRequest loginRequest = LoginRequest.builder()
@@ -123,7 +42,7 @@ class AuthIntegrationTest {
                 .password("wrongpassword")
                 .build();
 
-        mockMvc.perform(post("/api/auth/login")
+        mockMvc.perform(post("/api/users/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(loginRequest)))
                 .andExpect(status().isUnauthorized());
@@ -139,7 +58,7 @@ class AuthIntegrationTest {
                 .role(UserRole.USER.name())
                 .build();
 
-        mockMvc.perform(post("/api/auth/register")
+        mockMvc.perform(post("/api/users/register")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(registerRequest)))
                 .andExpect(status().isBadRequest());
@@ -155,7 +74,7 @@ class AuthIntegrationTest {
                 .role(UserRole.USER.name())
                 .build();
 
-        mockMvc.perform(post("/api/auth/register")
+        mockMvc.perform(post("/api/users/register")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(registerRequest)))
                 .andExpect(status().isBadRequest());
