@@ -15,7 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -29,7 +29,7 @@ public class ProductController {
     private ProductService productService;
 
     @PostMapping
-    @Secured({Role.ADMIN})
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Create a new product", description = "Create a new product with name, description, price, and quantity")
     public ResponseEntity<ProductResponse> createProduct(@Valid @RequestBody ProductRequest request) {
         ProductResponse response = productService.createProduct(request);
@@ -72,7 +72,7 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    @Secured({Role.ADMIN})
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Update product", description = "Admin only: Update an existing product")
     public ResponseEntity<ProductResponse> updateProduct(@PathVariable Long id, @Valid @RequestBody ProductRequest request) {
         ProductResponse response = productService.updateProduct(id, request);
@@ -80,7 +80,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}")
-    @Secured({Role.ADMIN})
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Delete product", description = "Admin only: Soft delete a product")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);

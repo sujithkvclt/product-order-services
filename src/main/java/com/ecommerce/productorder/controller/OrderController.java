@@ -15,7 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -53,7 +53,7 @@ public class OrderController {
     }
 
     @GetMapping
-    @Secured({Role.ADMIN})
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Get all orders", description = "Admin only: Retrieve all orders from all users")
     public ResponseEntity<PagedResponse<OrderResponse>> getAllOrders(
             @RequestParam(defaultValue = "0") int page,
