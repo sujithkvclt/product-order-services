@@ -96,6 +96,43 @@ The application supports multiple profiles:
 
 ## API Documentation
 
+### Postman Collection
+
+The repository includes a pre-configured Postman collection and environment for easy API testing.
+
+#### Import Instructions
+
+1. **Import Collection:**
+   - Open Postman
+   - Click **Import** button (top-left)
+   - Select the file: `product-order-services.postman_collection.json`
+   - Click **Import**
+
+2. **Import Environment:**
+   - Click **Import** button again
+   - Select the file: `product-order-services.postman_environment.json`
+   - Click **Import**
+
+3. **Select Environment:**
+   - Click the environment dropdown (top-right corner)
+   - Select **Product Order Services**
+
+4. **Start Testing:**
+   - The collection includes all API endpoints with pre-configured requests
+   - Use the **Login** request first to automatically set the `bearerToken` environment variable
+   - All subsequent requests will use this token automatically
+
+#### Auto-Token Setup
+
+The Login API request includes a test script that automatically saves the JWT token to the `bearerToken` environment variable:
+
+```javascript
+var jsonData = pm.response.json();
+pm.environment.set("bearerToken", jsonData.token);
+```
+
+After a successful login, all authenticated requests will automatically use this token.
+
 ### Sample Users (Pre-loaded)
 The application comes with sample data:
 

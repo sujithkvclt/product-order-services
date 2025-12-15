@@ -1,0 +1,1215 @@
+{
+	"info": {
+		"_postman_id": "970fd28f-86b2-40c9-8b2e-01b81385a0a5",
+		"name": "Product Order Services API",
+		"description": "REST API for managing products, users, and orders with dynamic discount computation\n\nContact Support:\n Name: API Support\n Email: sujithkvclt@gmail.com",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1579526"
+	},
+	"item": [
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "products",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "Get product by id",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/products/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"products",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "9185"
+												}
+											]
+										},
+										"description": "Retrieve a single product by its ID"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/products/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"products",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "9185"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": 112,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"price\": 8447.223821554153,\n  \"quantity\": 813,\n  \"available\": true,\n  \"createdAt\": \"2016-08-28T16:12:43.338Z\",\n  \"updatedAt\": \"1974-11-23T14:43:47.572Z\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Update product",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"string\",\n  \"price\": 1853.0921328781037,\n  \"quantity\": 4015,\n  \"description\": \"string\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/products/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"products",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "9185"
+												}
+											]
+										},
+										"description": "Admin only: Update an existing product"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "*/*"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"name\": \"string\",\n  \"price\": 1853.0921328781037,\n  \"quantity\": 4015,\n  \"description\": \"string\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/products/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"products",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "9185"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": 112,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"price\": 8447.223821554153,\n  \"quantity\": 813,\n  \"available\": true,\n  \"createdAt\": \"2016-08-28T16:12:43.338Z\",\n  \"updatedAt\": \"1974-11-23T14:43:47.572Z\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Delete product",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/products/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"products",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "9185"
+												}
+											]
+										},
+										"description": "Admin only: Soft delete a product"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/products/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"products",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "9185"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "search",
+							"item": [
+								{
+									"name": "Search products",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/products/search?name=Laptop&minPrice=100&maxPrice=1500&available=true&page=0&size=20&sort=createdAt&direction=DESC",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"products",
+												"search"
+											],
+											"query": [
+												{
+													"key": "name",
+													"value": "Laptop"
+												},
+												{
+													"key": "minPrice",
+													"value": "100"
+												},
+												{
+													"key": "maxPrice",
+													"value": "1500"
+												},
+												{
+													"key": "available",
+													"value": "true"
+												},
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "20"
+												},
+												{
+													"key": "sort",
+													"value": "createdAt"
+												},
+												{
+													"key": "direction",
+													"value": "DESC"
+												}
+											]
+										},
+										"description": "Search products by name, price range, and availability with pagination"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/products/search?name=string&minPrice=4039.2327175495925&maxPrice=4039.2327175495925&available=true&page=0&size=20&sort=createdAt&direction=DESC",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"products",
+														"search"
+													],
+													"query": [
+														{
+															"key": "name",
+															"value": "string"
+														},
+														{
+															"key": "minPrice",
+															"value": "4039.2327175495925"
+														},
+														{
+															"key": "maxPrice",
+															"value": "4039.2327175495925"
+														},
+														{
+															"key": "available",
+															"value": "true"
+														},
+														{
+															"key": "page",
+															"value": "0"
+														},
+														{
+															"key": "size",
+															"value": "20"
+														},
+														{
+															"key": "sort",
+															"value": "createdAt"
+														},
+														{
+															"key": "direction",
+															"value": "DESC"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"content\": [\n    {\n      \"id\": 8989,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"price\": 9895.531688088397,\n      \"quantity\": 1864,\n      \"available\": false,\n      \"createdAt\": \"1970-11-02T22:43:02.393Z\",\n      \"updatedAt\": \"1986-11-24T23:07:36.930Z\"\n    },\n    {\n      \"id\": 3388,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"price\": 9291.576249876978,\n      \"quantity\": 1001,\n      \"available\": false,\n      \"createdAt\": \"1978-04-08T07:54:45.428Z\",\n      \"updatedAt\": \"2015-12-10T17:31:34.547Z\"\n    }\n  ],\n  \"page\": 5083,\n  \"size\": 7727,\n  \"totalItems\": 969,\n  \"totalPages\": 5956\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Get all products",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/products?page=0&size=20&sort=createdAt&direction=DESC",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"products"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "20"
+										},
+										{
+											"key": "sort",
+											"value": "createdAt"
+										},
+										{
+											"key": "direction",
+											"value": "DESC"
+										}
+									]
+								},
+								"description": "Retrieve all products with pagination and sorting"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/products?page=0&size=20&sort=createdAt&direction=DESC",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"products"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "20"
+												},
+												{
+													"key": "sort",
+													"value": "createdAt"
+												},
+												{
+													"key": "direction",
+													"value": "DESC"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"content\": [\n    {\n      \"id\": 8989,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"price\": 9895.531688088397,\n      \"quantity\": 1864,\n      \"available\": false,\n      \"createdAt\": \"1970-11-02T22:43:02.393Z\",\n      \"updatedAt\": \"1986-11-24T23:07:36.930Z\"\n    },\n    {\n      \"id\": 3388,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"price\": 9291.576249876978,\n      \"quantity\": 1001,\n      \"available\": false,\n      \"createdAt\": \"1978-04-08T07:54:45.428Z\",\n      \"updatedAt\": \"2015-12-10T17:31:34.547Z\"\n    }\n  ],\n  \"page\": 5083,\n  \"size\": 7727,\n  \"totalItems\": 969,\n  \"totalPages\": 5956\n}"
+								}
+							]
+						},
+						{
+							"name": "Create a new product",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"string\",\n  \"price\": 1853.0921328781037,\n  \"quantity\": 4015,\n  \"description\": \"string\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/products",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"products"
+									]
+								},
+								"description": "Create a new product with name, description, price, and quantity"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"string\",\n  \"price\": 1853.0921328781037,\n  \"quantity\": 4015,\n  \"description\": \"string\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/products",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"products"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 112,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"price\": 8447.223821554153,\n  \"quantity\": 813,\n  \"available\": true,\n  \"createdAt\": \"2016-08-28T16:12:43.338Z\",\n  \"updatedAt\": \"1974-11-23T14:43:47.572Z\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "users",
+					"item": [
+						{
+							"name": "register",
+							"item": [
+								{
+									"name": "Register a new user",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"email\": \"string\",\n  \"password\": \"string\",\n  \"role\": \"string\",\n  \"username\": \"string\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/users/register",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"users",
+												"register"
+											]
+										},
+										"description": "Create a new user account with username, email, password, and role"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "*/*"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"email\": \"string\",\n  \"password\": \"string\",\n  \"role\": \"string\",\n  \"username\": \"string\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/users/register",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"users",
+														"register"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"token\": \"string\",\n  \"userId\": 1546,\n  \"username\": \"string\",\n  \"email\": \"string\",\n  \"role\": \"USER\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "login",
+							"item": [
+								{
+									"name": "Login Regular User",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"  var jsonData = pm.response.json();",
+													"  var token = jsonData.token;",
+													"  pm.environment.set(\"bearerToken\", token);"
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"password\": \"password123\",\n  \"username\": \"regularuser\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/users/login",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"users",
+												"login"
+											]
+										},
+										"description": "Authenticate user and return JWT token"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "*/*"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"password\": \"string\",\n  \"username\": \"string\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/users/login",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"users",
+														"login"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"token\": \"string\",\n  \"userId\": 1546,\n  \"username\": \"string\",\n  \"email\": \"string\",\n  \"role\": \"USER\"\n}"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "orders",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "Get order by id",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/orders/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"orders",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "9185"
+												}
+											]
+										},
+										"description": "Retrieve a single order by its id"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/orders/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"orders",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "9185"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": 3616,\n  \"userId\": 1884,\n  \"username\": \"string\",\n  \"items\": [\n    {\n      \"id\": 5926,\n      \"productId\": 9468,\n      \"productName\": \"string\",\n      \"quantity\": 6397,\n      \"unitPrice\": 6865.864727387976,\n      \"discountApplied\": 6378.7311335528975,\n      \"totalPrice\": 4593.722328176781\n    },\n    {\n      \"id\": 2921,\n      \"productId\": 5510,\n      \"productName\": \"string\",\n      \"quantity\": 8894,\n      \"unitPrice\": 3209.2414008781043,\n      \"discountApplied\": 1742.795276439084,\n      \"totalPrice\": 1431.3360297028855\n    }\n  ],\n  \"orderTotal\": 6802.609601449239,\n  \"totalDiscount\": 7082.198375565469,\n  \"createdAt\": \"1988-12-29T23:30:00.820Z\",\n  \"updatedAt\": \"1963-12-29T22:13:05.800Z\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "my-orders",
+							"item": [
+								{
+									"name": "Get user's orders",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/orders/my-orders?page=0&size=20&sort=createdAt&direction=DESC",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"orders",
+												"my-orders"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "20"
+												},
+												{
+													"key": "sort",
+													"value": "createdAt"
+												},
+												{
+													"key": "direction",
+													"value": "DESC"
+												}
+											]
+										},
+										"description": "Retrieve all orders placed by the authenticated user"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/orders/my-orders?page=0&size=20&sort=createdAt&direction=DESC",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"orders",
+														"my-orders"
+													],
+													"query": [
+														{
+															"key": "page",
+															"value": "0"
+														},
+														{
+															"key": "size",
+															"value": "20"
+														},
+														{
+															"key": "sort",
+															"value": "createdAt"
+														},
+														{
+															"key": "direction",
+															"value": "DESC"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"content\": [\n    {\n      \"id\": 4789,\n      \"userId\": 1543,\n      \"username\": \"string\",\n      \"items\": [\n        {\n          \"id\": 427,\n          \"productId\": 8455,\n          \"productName\": \"string\",\n          \"quantity\": 3182,\n          \"unitPrice\": 882.8388617970506,\n          \"discountApplied\": 5437.200854566715,\n          \"totalPrice\": 2193.015449962252\n        },\n        {\n          \"id\": 6820,\n          \"productId\": 714,\n          \"productName\": \"string\",\n          \"quantity\": 2254,\n          \"unitPrice\": 9278.90313304888,\n          \"discountApplied\": 3976.023918038356,\n          \"totalPrice\": 6280.506847203354\n        }\n      ],\n      \"orderTotal\": 2566.3429862047947,\n      \"totalDiscount\": 6385.3063732417395,\n      \"createdAt\": \"1961-11-19T06:16:31.898Z\",\n      \"updatedAt\": \"1962-06-11T06:18:32.460Z\"\n    },\n    {\n      \"id\": 4099,\n      \"userId\": 6459,\n      \"username\": \"string\",\n      \"items\": [\n        {\n          \"id\": 657,\n          \"productId\": 5729,\n          \"productName\": \"string\",\n          \"quantity\": 7457,\n          \"unitPrice\": 9530.835666805424,\n          \"discountApplied\": 2654.024382167237,\n          \"totalPrice\": 4211.488451960808\n        },\n        {\n          \"id\": 7167,\n          \"productId\": 7737,\n          \"productName\": \"string\",\n          \"quantity\": 312,\n          \"unitPrice\": 6981.188379282777,\n          \"discountApplied\": 6677.111244987926,\n          \"totalPrice\": 7904.307204469136\n        }\n      ],\n      \"orderTotal\": 1903.815626215717,\n      \"totalDiscount\": 8544.771815792175,\n      \"createdAt\": \"1968-03-22T14:52:58.526Z\",\n      \"updatedAt\": \"1972-04-09T15:36:36.962Z\"\n    }\n  ],\n  \"page\": 4991,\n  \"size\": 1454,\n  \"totalItems\": 1255,\n  \"totalPages\": 125\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Get all orders",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/orders?page=0&size=20&sort=createdAt&direction=DESC",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"orders"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "20"
+										},
+										{
+											"key": "sort",
+											"value": "createdAt"
+										},
+										{
+											"key": "direction",
+											"value": "DESC"
+										}
+									]
+								},
+								"description": "Admin only: Retrieve all orders from all users"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/orders?page=0&size=20&sort=createdAt&direction=DESC",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"orders"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "20"
+												},
+												{
+													"key": "sort",
+													"value": "createdAt"
+												},
+												{
+													"key": "direction",
+													"value": "DESC"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"content\": [\n    {\n      \"id\": 4789,\n      \"userId\": 1543,\n      \"username\": \"string\",\n      \"items\": [\n        {\n          \"id\": 427,\n          \"productId\": 8455,\n          \"productName\": \"string\",\n          \"quantity\": 3182,\n          \"unitPrice\": 882.8388617970506,\n          \"discountApplied\": 5437.200854566715,\n          \"totalPrice\": 2193.015449962252\n        },\n        {\n          \"id\": 6820,\n          \"productId\": 714,\n          \"productName\": \"string\",\n          \"quantity\": 2254,\n          \"unitPrice\": 9278.90313304888,\n          \"discountApplied\": 3976.023918038356,\n          \"totalPrice\": 6280.506847203354\n        }\n      ],\n      \"orderTotal\": 2566.3429862047947,\n      \"totalDiscount\": 6385.3063732417395,\n      \"createdAt\": \"1961-11-19T06:16:31.898Z\",\n      \"updatedAt\": \"1962-06-11T06:18:32.460Z\"\n    },\n    {\n      \"id\": 4099,\n      \"userId\": 6459,\n      \"username\": \"string\",\n      \"items\": [\n        {\n          \"id\": 657,\n          \"productId\": 5729,\n          \"productName\": \"string\",\n          \"quantity\": 7457,\n          \"unitPrice\": 9530.835666805424,\n          \"discountApplied\": 2654.024382167237,\n          \"totalPrice\": 4211.488451960808\n        },\n        {\n          \"id\": 7167,\n          \"productId\": 7737,\n          \"productName\": \"string\",\n          \"quantity\": 312,\n          \"unitPrice\": 6981.188379282777,\n          \"discountApplied\": 6677.111244987926,\n          \"totalPrice\": 7904.307204469136\n        }\n      ],\n      \"orderTotal\": 1903.815626215717,\n      \"totalDiscount\": 8544.771815792175,\n      \"createdAt\": \"1968-03-22T14:52:58.526Z\",\n      \"updatedAt\": \"1972-04-09T15:36:36.962Z\"\n    }\n  ],\n  \"page\": 4991,\n  \"size\": 1454,\n  \"totalItems\": 1255,\n  \"totalPages\": 125\n}"
+								}
+							]
+						},
+						{
+							"name": "Create an order",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"items\": [\n    {\n      \"productId\": 3,\n      \"quantity\": 20\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/orders",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"orders"
+									]
+								},
+								"description": "Create a new order for multiple products with automatic discount calculation"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"items\": [\n    {\n      \"productId\": 9913,\n      \"quantity\": 7963\n    },\n    {\n      \"productId\": 8424,\n      \"quantity\": 8130\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/orders",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"orders"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 3616,\n  \"userId\": 1884,\n  \"username\": \"string\",\n  \"items\": [\n    {\n      \"id\": 5926,\n      \"productId\": 9468,\n      \"productName\": \"string\",\n      \"quantity\": 6397,\n      \"unitPrice\": 6865.864727387976,\n      \"discountApplied\": 6378.7311335528975,\n      \"totalPrice\": 4593.722328176781\n    },\n    {\n      \"id\": 2921,\n      \"productId\": 5510,\n      \"productName\": \"string\",\n      \"quantity\": 8894,\n      \"unitPrice\": 3209.2414008781043,\n      \"discountApplied\": 1742.795276439084,\n      \"totalPrice\": 1431.3360297028855\n    }\n  ],\n  \"orderTotal\": 6802.609601449239,\n  \"totalDiscount\": 7082.198375565469,\n  \"createdAt\": \"1988-12-29T23:30:00.820Z\",\n  \"updatedAt\": \"1963-12-29T22:13:05.800Z\"\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{bearerToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080"
+		}
+	]
+}
