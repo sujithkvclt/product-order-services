@@ -21,9 +21,8 @@ class DiscountCalculatorTest {
         discountCalculator = new DiscountCalculator();
 
         List<DiscountStrategy> strategies = List.of(
-                new NoDiscountStrategy(),
-                new PremiumUserDiscountStrategy(),
-                new HighValueOrderDiscountStrategy()
+                new PremiumUserDiscountStrategy(new BigDecimal("0.10")),
+                new HighValueOrderDiscountStrategy(new BigDecimal("500.00"), new BigDecimal("0.05"))
         );
 
         ReflectionTestUtils.setField(discountCalculator, "discountStrategies", strategies);

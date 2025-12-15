@@ -25,6 +25,14 @@ jwt:
   secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
   expiration: 86400000 # 24 hours in milliseconds
 
+# Discount Configuration
+discount:
+  premium-user:
+    percentage: 0.10
+  high-value-order:
+    threshold: 500.00
+    percentage: 0.05
+
 # Management Endpoints
 management:
   endpoints:

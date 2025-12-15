@@ -1,24 +1,33 @@
 package com.ecommerce.productorder.service.discount;
 
 import com.ecommerce.productorder.model.enums.UserRole;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
- * Additional 5% discount strategy for orders over $500
+ * Additional discount strategy for high-value orders
+ * Applies discount when order total is greater than or equal to the configured threshold
  */
 @Component
 public class HighValueOrderDiscountStrategy implements DiscountStrategy {
 
-    private static final BigDecimal THRESHOLD = new BigDecimal("500.00");
-    private static final BigDecimal DISCOUNT_PERCENTAGE = new BigDecimal("0.05"); // 5%
+    private final BigDecimal threshold;
+    private final BigDecimal discountPercentage;
+
+    public HighValueOrderDiscountStrategy(
+            @Value("${discount.high-value-order.threshold}") BigDecimal threshold,
+            @Value("${discount.high-value-order.percentage}") BigDecimal discountPercentage) {
+        this.threshold = threshold;
+        this.discountPercentage = discountPercentage;
+    }
 
     @Override
     public BigDecimal calculateDiscount(BigDecimal orderTotal, UserRole userRole) {
-        if (orderTotal.compareTo(THRESHOLD) > 0) {
-            return orderTotal.multiply(DISCOUNT_PERCENTAGE)
+        if (orderTotal.compareTo(threshold) >= 0) {
+            return orderTotal.multiply(discountPercentage)
                     .setScale(2, RoundingMode.HALF_UP);
         }
         return BigDecimal.ZERO;
@@ -26,6 +35,6 @@ public class HighValueOrderDiscountStrategy implements DiscountStrategy {
 
     @Override
     public boolean isApplicable(BigDecimal orderTotal, UserRole userRole) {
-        return orderTotal.compareTo(THRESHOLD) > 0;
+        return orderTotal.compareTo(threshold) >= 0;
     }
 }
