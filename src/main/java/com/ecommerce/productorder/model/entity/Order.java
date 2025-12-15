@@ -3,6 +3,7 @@ package com.ecommerce.productorder.model.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -17,6 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
+@SQLDelete(sql = "UPDATE orders SET deleted = true WHERE id = ?")
 @Where(clause = "deleted=false")
 public class Order extends BaseEntity {
 

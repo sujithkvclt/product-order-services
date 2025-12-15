@@ -22,6 +22,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
+@SQLDelete(sql = "UPDATE products SET deleted = true WHERE id = ?")
 @Where(clause = "deleted=false")
 public class Product extends BaseEntity {
 
